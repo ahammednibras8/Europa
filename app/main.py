@@ -14,4 +14,12 @@ def list_tables():
 
 @app.get("/preview/{table_name}")
 def preview(table_name: str, limit: int = 5):
-    return {"table": table_name, "rows": preview_table(table_name, limit)}
+    return preview_table(table_name, limit)
+
+@app.get("/schema/{table_name}")
+def get_schema(table_name: str):
+    try:
+        result = con.execute(f"DESCRIBE {table_name}").fetchall()
+        return [{"name": col[0], "type": col[1]} for col in result]
+    except Exception as e:
+        return {"error": str(e)}
