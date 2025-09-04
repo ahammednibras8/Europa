@@ -1,4 +1,4 @@
 .venv
-/app/__pycache__
+**/__pycache__/
 /data
-europa.db
+europa.*
