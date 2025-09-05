@@ -1,11 +1,13 @@
 import glob
 import os
-from app.database import con
-from app.logger import logger
+from pathlib import Path
+from app.db.database import con
+from app.core.logger import logger
 
-from app.schema import create_table_with_schema, detect_schema
+from app.schema.schema import create_table_with_schema, detect_schema
 
-DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+DATA_DIR = PROJECT_ROOT / "data"
 
 def preview_table(table_name: str, limit: int = 5):
     try:

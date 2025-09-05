@@ -1,5 +1,5 @@
-from app.database import con
-from app.logger import logger
+from app.db.database import con
+from app.core.logger import logger
 
 def detect_schema(file: str, file_type: str):
     try:
